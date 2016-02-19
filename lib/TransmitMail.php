@@ -67,6 +67,7 @@ class TransmitMail
     // 設定の初期値
     private $default_config = array(
         // 基本的な設定
+        'from_email' => '',
         'to_email' => '',
         'cc_email' => '',
         'bcc_email' => '',
@@ -1115,7 +1116,14 @@ class TransmitMail
             $body = $this->hd($body);
 
             // メール送信元
-            if (!empty($this->post[$this->config['auto_reply_email']])) {
+            if (!empty($this->config['from_email'])) {
+                $from_email = $this->config['from_email'];
+
+                // Reply-To
+                if (!empty($this->post[$this->config['auto_reply_email']])) {
+                    $this->mail->replyto($this->post[$this->config['auto_reply_email']]);
+                }
+            } elseif (!empty($this->post[$this->config['auto_reply_email']])) {
                 $from_email = $this->post[$this->config['auto_reply_email']];
             } else {
                 $from_email = $to_email;
