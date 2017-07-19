@@ -3,3 +3,6 @@ config:
     to_subject: ［株式会社テスト］お問い合わせ
     auto_reply_subject: ［株式会社テスト］お問い合わせありがとうございます
     auto_reply_name: 株式会社テスト
+    file: true
+    file_allow_extension: gif,jpg,jpeg,png,doc,docx,xls,xlsx,ppt,pptx,pdf
+    file_max_size: 2097152
